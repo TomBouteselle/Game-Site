@@ -22,3 +22,13 @@ function showAll()
     }
     // print '</div>';
 }
+
+function getAll() {
+  $connection = dbConnection();
+    $sql = "select * from game";
+    $query = $connection->prepare($sql);
+    $query->execute();
+    $res = $query->fetchAll();
+
+    return $res;
+}
