@@ -79,7 +79,7 @@
                             <td>$jeu->Description</td>
                             <td>$jeu->Price €</td>
 
-                            <td><button class='btn btn-sm btn-warning'>Modifier</button></td>
+                            <td><a href='update.php?gameid=$jeu->Id' class='btn btn-sm btn-warning'>Modifier</a></td>
                             <td><a href='admin.php?action=delete&gameid=$jeu->Id' class='btn btn-sm btn-danger'>Supprimer</a></td>
                             </tr>";
                         }

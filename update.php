@@ -14,10 +14,12 @@
 <body>
     <?php 
         require('navbar.php'); 
-        
+        $gameId = $_GET['gameid'];
+
+        $jeu = (object) getById($gameId);
         //Controller
         if (isset($_GET['action'])){
-            if ($_GET['action'] == 'add') {
+            if ($_GET['action'] == 'update') {
                 $name = $_POST['name'];
                 $description = $_POST['description'];
                 $price = $_POST['price'];
@@ -32,18 +34,17 @@
 
 
                     // prepare sql and bind parameters
-                    $stmt = $connection->prepare("INSERT INTO game (Name, Description, Price, Image)
-                    VALUES (:name, :description, :price, :image)");
-                    $stmt->bindParam(':name', $name);
-                    $stmt->bindParam(':description', $description);
-                    $stmt->bindParam(':price', $price);
-                    $stmt->bindParam(':image', $fileName);
+                    $stmt = $connection->prepare("UPDATE game SET Name = ?, Description = ?, Price = ?, Image = ? WHERE Id = ?");
+                    // $stmt->bindParam(':name', $name);
+                    // $stmt->bindParam(':description', $description);
+                    // $stmt->bindParam(':price', $price);
+                    // $stmt->bindParam(':image', $fileName);
 
-                    $res = $stmt->execute();
+                    $res = $stmt->execute([$name, $description, $price, $fileName, $gameId]);
 
                     if ($res) {
                         print '<div class="alert alert-success" role="alert">
-                        Jeu ajouté !
+                        Jeu modifié !
                       </div>';
                     }
                 }
@@ -54,6 +55,7 @@
                 }
             }
         }
+        $jeu = (object) getById($gameId);
     ?>
 
     <h1 class="text-center my-5">Ajouter un jeu</h1>
@@ -61,13 +63,13 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?action=add';?>" method="POST" enctype="multipart/form-data">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?action=update&gameid='.$jeu->Id;?>" method="POST" enctype="multipart/form-data">
                     <label for="name">Nom</label>
-                    <input class="form-control mb-1" name="name" type="text" id="name" required>
+                    <input class="form-control mb-1" name="name" type="text" id="name" value="<?php echo $jeu->Name ?>" required>
                     <label for="description">Description</label>
-                    <input class="form-control mb-1" name="description" type="text" id="description" required>
+                    <input class="form-control mb-1" name="description" type="text" id="description" value="<?php echo $jeu->Description ?>" required>
                     <label for="price">Prix</label> 
-                    <input class="form-control mb-1" name="price" type="number" id="price" required>
+                    <input class="form-control mb-1" name="price" type="number" id="price" value="<?php echo $jeu->Price ?>" required>
                     <label for="image">Image</label>
                     <input class="form-control mb-1" name="image" type="file" id="image">
                     <input class="btn btn-success mb-1" type="submit" value="Valider">

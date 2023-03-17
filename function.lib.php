@@ -32,3 +32,13 @@ function getAll() {
 
     return $res;
 }
+
+function getById($id) {
+  $connection = dbConnection();
+    $sql = "select * from game where Id=?";
+    $query = $connection->prepare($sql);
+    $query->execute([$id]);
+    $res = $query->fetch();
+
+    return $res;
+}
