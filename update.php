@@ -27,6 +27,8 @@
                 if ($_FILES['image']['tmp_name'] != '') {
                     $fileName = str_replace(' ', '', $_FILES['image']['name']);
                     copy($_FILES['image']['tmp_name'], "images/".$fileName);
+                } else {
+                    $fileName = $jeu->Image;
                 }
 
                 try {

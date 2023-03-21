@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : mar. 14 mars 2023 à 21:45
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Host: localhost:3306
+-- Generation Time: Mar 21, 2023 at 11:02 AM
+-- Server version: 5.7.33
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,35 +19,52 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `gamesite_db`
+-- Database: `gamesite_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `game`
+-- Table structure for table `game`
 --
 
-DROP TABLE IF EXISTS `game`;
-CREATE TABLE IF NOT EXISTS `game` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `game` (
+  `Id` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
   `Price` float DEFAULT NULL,
-  `Image` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `Image` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `game`
+-- Dumping data for table `game`
 --
 
 INSERT INTO `game` (`Id`, `Name`, `Description`, `Price`, `Image`) VALUES
-(1, 'Mario', 'Mario de Nintendo', 30.5, NULL),
-(2, 'Sonic', 'Sonic de Sega', 40.5, NULL),
-(3, 'Tom', 'Ouais ouais', 4, NULL),
-(7, 'Test', 'test', 45, ''),
-(6, 'Dead CD', 'Le CD mort', 11, 'COVERBASE.jpg');
+(1, 'Mario', 'Mario de Nintendo', 30.5, 'MjAyMTA3ZTI0NTE0NWM4OGRiMWQxOTY5NjRjMDgxNDEwYmZjMzU.jfif'),
+(2, 'Sonic', 'Sonic de Sega', 40.5, 'sonic-frontiers-6388f7908ddaf.jpg'),
+(14, 'Plant', 'Jeu de foret', 10, ''),
+(6, 'Dead CD', 'Le CD mort, jeu sorti en 1999 par Michael Jackson', 11, 'logo.png');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `game`
+--
+ALTER TABLE `game`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `game`
+--
+ALTER TABLE `game`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -16,7 +16,7 @@ function showAll()
         print '<div class="card-body">
           <h5 class="card-title">'.$jeu['Name'].'</h5>
           <p class="card-text">'.$jeu['Description'].'</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p class="card-text font-weight-bold">'.$jeu['Price'].' €</p>
         </div>
       </div>';
     }
